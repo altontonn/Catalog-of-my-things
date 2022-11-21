@@ -18,6 +18,7 @@ https://github.com/altontonn/Catalog-of-my-things.git
 2. Install the linters
 ```bash
 `gem install --no-document rubocop`
+```
 
 ## Authors
 
