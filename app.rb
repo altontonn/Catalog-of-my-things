@@ -22,6 +22,10 @@ class APP
     choice = gets.chomp.to_i
 
     case choice
+    when 3
+      !@gmaes.length.zero? ? Game.list_games(@games) :  puts "\nThere are no added games you can add by pressing 10\n"
+    when 6
+      !@authers.length.zero? ? authors.list_games(@authors) :  puts "\nThere are no added authors you can add by pressing 10\n"
     when 11
       puts "Thank you for using the app please visit us soon!! \n \n \n"
 
