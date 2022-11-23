@@ -1,3 +1,6 @@
+require 'genre'
+require 'music'
+
 class APP
   @books = []
   @music_album = []
@@ -22,8 +25,16 @@ class APP
     choice = gets.chomp.to_i
 
     case choice
+    when 2
+      if @music_album.length.zero? then puts "\nNo Music Album found\n\n" 
+      else 
+       MusicAlbum.list_music_album(@music_album)
+      end
     when 3
       !@gmaes.length.zero? ? Game.list_games(@games) :  puts "\nThere are no added games you can add by pressing 10\n"
+    when 4 
+      puts "\nNo Genre Found \n\n" if @genres.length.zero?
+      Genre.list_genre(@genres)
     when 6
       !@authers.length.zero? ? authors.list_games(@authors) :  puts "\nThere are no added authors you can add by pressing 10\n"
     when 11
