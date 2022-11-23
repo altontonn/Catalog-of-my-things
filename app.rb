@@ -1,7 +1,10 @@
+require './modules/genre'
+
 class APP
   @books = []
   @music_album = []
   @games = []
+  @genres=[]
 
   puts "Welcome to Catalog of My Life App!\n \n"
 
@@ -22,12 +25,20 @@ class APP
     choice = gets.chomp.to_i
 
     case choice
+    when 2
+       if @music_album.length.zero? then puts "\nNo Music Album found\n\n" 
+       else 
+        MusicAlbum.list_music_album(@music_album)
+       end     
+    when 4 
+      puts "\nNo Genre Found \n\n" if @genres.length.zero?
+      Genre.list_genre(@genres)
     when 11
-      puts "Thank you for using the app please visit us soon!! \n \n \n"
+      puts "\n\nThank you for using the app please visit us soon!! \n \n"
 
       exit
     else
-      puts 'Please pick a number from the list!'
+      puts "\nPlease pick a number from the list!\n"
     end
   end
 end
