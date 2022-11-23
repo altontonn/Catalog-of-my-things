@@ -1,5 +1,7 @@
 require './modules/genre'
 require './modules/music_album'
+require './modules/author'
+require './modules/game'
 
 class APP
   @books = []
