@@ -1,10 +1,13 @@
-require 'genre'
-require 'music'
+require './modules/genre'
+require './modules/music_album'
 
 class APP
   @books = []
-  @music_album = []
+  @music_albums = []
   @games = []
+  @genres = []
+  @labels = []
+  @authors = []
 
   puts "Welcome to Catalog of My Life App!\n \n"
 
@@ -16,19 +19,18 @@ class APP
     puts '4. List all genres'
     puts '5. List all labels'
     puts '6. List all authors'
-    puts '7. List all sources'
-    puts '8. Create a music album'
-    puts '9. Create a book'
-    puts '10. Create a game'
-    puts '11. Exit'
+    puts '7. Create a music album'
+    puts '8. Create a book'
+    puts '9. Create a game'
+    puts '10. Exit'
 
     choice = gets.chomp.to_i
 
     case choice
     when 2
-      if @music_album.length.zero? then puts "\nNo Music Album found\n\n" 
+      if @music_albums.length.zero? then puts "\nNo Music Album found\n\n" 
       else 
-       MusicAlbum.list_music_album(@music_album)
+       MusicAlbum.list_music_album(@music_albums)
       end
     when 3
       !@gmaes.length.zero? ? Game.list_games(@games) :  puts "\nThere are no added games you can add by pressing 10\n"
@@ -37,7 +39,7 @@ class APP
       Genre.list_genre(@genres)
     when 6
       !@authers.length.zero? ? authors.list_games(@authors) :  puts "\nThere are no added authors you can add by pressing 10\n"
-    when 11
+    when 10
       puts "Thank you for using the app please visit us soon!! \n \n \n"
 
       exit
