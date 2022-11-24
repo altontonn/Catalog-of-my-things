@@ -4,7 +4,6 @@ require './modules/music_album'
 
 class APP
   attr_accessor :books, :genres, :music_album
-
   include CreateElement
 
   def initialize
@@ -12,6 +11,8 @@ class APP
     @music_album = []
     @games = []
     @genres = []
+    @author = []
+    @label = []
   end
 
   def option(choice)
@@ -31,9 +32,22 @@ class APP
     when 8
       create_albums
     when 11
+      save
       puts "\n\nThank you for using the app please visit us soon!! \n \n"
     else
       puts "\nPlease pick a number from the list!\n"
+    end
+  end
+
+  def load
+    file=File.read("music_album.json")
+    music=JSON.parse(file)
+    music.each do |album|
+      output=load_item(album['genre'],album['author'],album['label'],album['date'],album['source'])
+      @genres.push(output[0]) unless @genres.include?(output[0])
+      @author.push(output[1]) unless @author.include?(output[1])
+      @label.push(output[2]) unless @label.include?(output[2])
+      @music_album.push(MusicAlbum.new(*output,album['spotify']))
     end
   end
 
@@ -50,5 +64,19 @@ class APP
     puts '9. Create a book'
     puts '10. Create a game'
     puts '11. Exit'
+  end
+
+  def save
+    music=[]
+    @music_album.each do |album|
+      music.push({
+        genre=>album.genre,
+        author=>album.author,
+        label=>album.label,
+        date=>album.date,
+        source=>album.source,
+        spotify=>album.spotify})
+    end
+      File.open('music_album.json',w){ |f| f.puts album.to_json }
   end
 end
