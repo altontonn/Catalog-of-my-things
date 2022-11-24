@@ -16,7 +16,7 @@ class Genre
 
   def self.list_genre(genres)
     print "\n\n"
-    genres.each_with_index do |genre,index|
+    genres.each_with_index do |genre, index|
       print "#{index}: #{genre.name} "
     end
     print "\n\n"

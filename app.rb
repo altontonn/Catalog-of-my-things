@@ -4,6 +4,7 @@ require './modules/music_album'
 
 class APP
   attr_accessor :books, :genres, :music_album
+
   include CreateElement
 
   def initialize
@@ -28,7 +29,7 @@ class APP
         puts "\nNo Genre Found \n\n"
       else
         Genre.list_genre(@genres)
-      end  
+      end
     when 8
       create_albums
     when 11
@@ -40,14 +41,14 @@ class APP
   end
 
   def load
-    file=File.read("music_album.json")
-    music=JSON.parse(file)
+    file = File.read('music_album.json')
+    music = JSON.parse(file)
     music.each do |album|
-      output=load_item(album['genre'],album['author'],album['label'],album['date'],album['source'])
+      output = load_item(album['genre'], album['author'], album['label'], album['date'], album['source'])
       @genres.push(output[0]) unless @genres.include?(output[0])
       @author.push(output[1]) unless @author.include?(output[1])
       @label.push(output[2]) unless @label.include?(output[2])
-      @music_album.push(MusicAlbum.new(*output,album['spotify']))
+      @music_album.push(MusicAlbum.new(*output, album['spotify']))
     end
   end
 
@@ -67,16 +68,17 @@ class APP
   end
 
   def save
-    music=[]
+    music = []
     @music_album.each do |album|
       music.push({
-        genre=>album.genre,
-        author=>album.author,
-        label=>album.label,
-        date=>album.date,
-        source=>album.source,
-        spotify=>album.spotify})
+                   genre => album.genre,
+                   author => album.author,
+                   label => album.label,
+                   date => album.date,
+                   source => album.source,
+                   spotify => album.spotify
+                 })
     end
-      File.open('music_album.json',w){ |f| f.puts album.to_json }
+    File.open('music_album.json', w) { |f| f.puts album.to_json }
   end
 end
