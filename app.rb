@@ -2,6 +2,7 @@ require './modules/genre'
 require './modules/music_album'
 require './modules/author'
 require './modules/game'
+require './create_game'
 
 class APP
   def initialize
@@ -39,6 +40,8 @@ class APP
       Genre.list_genre(@genres)
     when 6
       Author.list_authors(@authors)
+    when 9
+      add_game
     when 10
       puts "Thank you for using the app please visit us soon!! \n \n \n"
     else

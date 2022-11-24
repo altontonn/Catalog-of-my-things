@@ -3,8 +3,8 @@ require './modules/item'
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
 
-  def initialize(multiplayer, last_played_at)
-    super
+  def initialize(*args, multiplayer, last_played_at)
+    super(*args)
     @multiplayer = multiplayer
     @last_played_at = last_played_at
   end
@@ -14,7 +14,7 @@ class Game < Item
       puts "\nThere are no added games you can add by pressing 10\n"
     else
       games.each do |game|
-        puts " multiplayer: #{game['multyplayer']} Last time played: #{game['last_time_played']}\n"
+        puts " multiplayer: #{game.multiplayer} Last time played: #{game.last_played_at}\n"
       end
     end
   end
