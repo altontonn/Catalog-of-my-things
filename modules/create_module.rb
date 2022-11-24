@@ -16,12 +16,12 @@ module CreateElement
   end
 
   def create_author
-    output = input(%w[firstname lastname])
+    output = input(['firstname','lastname'])
     Author.new(output[0], output[1])
   end
 
   def create_label
-    output = input([' label'])
+    output = input(['label'])
     Label.new(output[0])
   end
 
@@ -38,7 +38,7 @@ module CreateElement
     genre = create_genre
     authors = create_author
     labels = create_label
-    output = input(%w[date source spotify])
+    output = input(['date','source','spotify'])
     album = MusicAlbum.new(genre, author, label, output[0], output[1], output[2])
     @genres.push(genre) unless @genres.include?(genre)
     @label.push(labels) unless @label.include?(labels)

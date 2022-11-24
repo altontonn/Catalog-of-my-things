@@ -1,6 +1,7 @@
 require './modules/genre'
 require './modules/create_module'
 require './modules/music_album'
+require 'json'
 
 class APP
   attr_accessor :books, :genres, :music_album
@@ -41,7 +42,7 @@ class APP
   end
 
   def load
-    file = File.read('music_album.json')
+    file = File.read('./json/music_album.json')
     music = JSON.parse(file)
     music.each do |album|
       output = load_item(album['genre'], album['author'], album['label'], album['date'], album['source'])
@@ -79,6 +80,6 @@ class APP
                    spotify => album.spotify
                  })
     end
-    File.open('music_album.json', w) { |f| f.puts album.to_json }
+    File.write('./json/music_album.json',music.to_json)
   end
 end
