@@ -6,8 +6,10 @@ def main
     app.menu
     choice = gets.chomp.to_i
     app.options(choice)
-    break if choice == 10
+    if choice == 10
+      puts "Thank you for using the app please visit us soon!! \n \n \n"
+      break
+    end
   end
 end
-
 main

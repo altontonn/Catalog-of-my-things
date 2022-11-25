@@ -1,8 +1,7 @@
-require './modules/genre'
-require './modules/music_album'
-require './modules/author'
-require './modules/game'
-require './create_game'
+require_relative './modules/label'
+require_relative './modules/book'
+require_relative './methods'
+require_relative './preserve_data/preserve_data'
 
 class APP
   def initialize
@@ -12,6 +11,23 @@ class APP
     @genres = []
     @labels = []
     @authors = []
+  end
+
+  def list_item(choice)
+    case choice
+    when 1
+      Book.list_all_books(@books)
+    when 2
+      MusicAlbum.list_music_album(@music_albums)
+    when 3
+      Game.list_games(@games)
+    when 4
+      Genre.list_genre(@genres)
+    when 5
+      Label.list_all_labels(@labels)
+    when 6
+      Author.list_authors(@authors)
+    end
   end
 
   def menu
@@ -31,19 +47,19 @@ class APP
   end
 
   def options(choice)
+    Output.load_books(@books)
+    Output.load_labels(@labels)
     case choice
-    when 2
-      MusicAlbum.list_music_album(@music_albums)
-    when 3
-      Game.list_games(@games)
-    when 4
-      Genre.list_genre(@genres)
-    when 6
-      Author.list_authors(@authors)
+    when 1..6
+      list_items(choice)
+    when 7
+      puts 'coming soon'
+    when 8
+      add_book
     when 9
       add_game
     when 10
-      puts "Thank you for using the app please visit us soon!! \n \n \n"
+      Input.save_data(@books, @labels)
     else
       puts 'Please pick a number from the list!'
     end
