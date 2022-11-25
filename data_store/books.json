@@ -3,5 +3,20 @@
     "publisher": "Newton",
     "cover_state": "Good",
     "publish_date": "22"
+  },
+  {
+    "publisher": "Muskan",
+    "cover_state": "good",
+    "publish_date": "44"
+  },
+  {
+    "publisher": "Max",
+    "cover_state": "good",
+    "publish_date": "44"
+  },
+  {
+    "publisher": "Oxford",
+    "cover_state": "good",
+    "publish_date": "44"
   }
 ]
