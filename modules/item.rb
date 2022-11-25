@@ -21,7 +21,7 @@ class Item
 
   @archived = false
   def can_be_archived?
-    p_date = publish_date.split('/')
+    p_date = @publish_date.split('/')
     array = []
     p_date.each do |value|
       array.push(value.to_i)
