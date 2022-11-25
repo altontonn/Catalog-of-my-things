@@ -8,6 +8,7 @@ def add_book
   publish_date = gets.chomp
   book = Book.new(publisher, cover_state, publish_date)
   add_label(book)
+  puts "\n\nBook added successfully\n\n"
   @books << book
 end
 
