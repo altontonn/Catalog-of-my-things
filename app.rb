@@ -1,4 +1,3 @@
-
 require_relative './modules/label'
 require_relative './modules/book'
 require_relative './methods'
@@ -61,7 +60,6 @@ class APP
       add_game
     when 10
       Input.save_data(@books, @labels)
-
     else
       puts 'Please pick a number from the list!'
     end
