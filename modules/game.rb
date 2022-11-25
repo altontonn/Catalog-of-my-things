@@ -27,7 +27,7 @@ class Game < Item
     p_date.each do |value|
       array.push(value.to_i)
     end
-    date_diff = (DateTime.now - DateTime.new(array)).to_f
+    date_diff = (DateTime.now - DateTime.new(*array)).to_f
     return true if date_diff > 730.5
     return false if date_diff <= 730.5
   end

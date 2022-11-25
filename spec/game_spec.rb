@@ -1,7 +1,7 @@
-require '../modules/game'
+require './modules/game'
 
 describe 'Test Game class' do
-  game = Game.new(true, '2019/11/23')
+  game = Game.new('genre', 'author', 'label', '2018/11/23', 'source', true, '2019/11/23')
   it 'Creates new instance successfully' do
     expect(game).to be_an_instance_of(Game)
   end

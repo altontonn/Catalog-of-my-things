@@ -1,4 +1,4 @@
-require '../modules/author'
+require './modules/author'
 
 describe 'Test author class' do
   author = Author.new('Sam', 'David')
