@@ -1,4 +1,4 @@
-require_relative '../modules/book.rb'
+require_relative '../modules/book'
 
 describe Book do
   before :each do

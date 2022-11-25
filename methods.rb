@@ -1,10 +1,10 @@
 # Book
 def add_book
-  puts "Enter publisher"
+  puts 'Enter publisher'
   publisher = gets.chomp
-  puts "Enter cover state"
+  puts 'Enter cover state'
   cover_state = gets.chomp
-  puts "Enter publish date"
+  puts 'Enter publish date'
   publish_date = gets.chomp
   book = Book.new(publisher, cover_state, publish_date)
   add_label(book)
@@ -13,9 +13,9 @@ end
 
 # Label
 def add_label(item)
-  puts  "Title" 
+  puts 'Title'
   title = gets.chomp
-  puts "Color"
+  puts 'Color'
   color = gets.chomp
   label = Label.new(title, color)
   label.add_item(item)

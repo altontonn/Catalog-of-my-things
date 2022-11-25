@@ -18,7 +18,9 @@ class Book < Item
       puts "\nYou have no books currently, please add a book\n\n"
     else
       books.each do |book|
-        puts "Publisher: \"#{book.publisher}\" Cover_state: \"#{book.cover_state}\" Publish_date: \"#{book.publish_date}\""
+        # rubocop:disable Layout/LineLength
+        puts "Publisher: \"#{book.publisher}\" Cover_state: \"#{book.cover_state}\" Publish_date: \"#{book.publish_date}\" "
+        # rubocop:enable Layout/LineLength
       end
     end
   end
