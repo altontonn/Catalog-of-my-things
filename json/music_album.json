@@ -1,8 +1,1 @@
-[{
-    "genre": "cool",
-    "author": "jj",
-    "label": "ll",
-    "date": "1/1/2100",
-    "source": "a",
-    "spotify": true
-  }]
+[{"genre":"cool","author":"jj","date":"1/1/2100","spotify":true},{"genre":"wwww","author":"22","date":"33/3/3333","spotify":"true"}]
