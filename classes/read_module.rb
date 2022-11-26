@@ -3,6 +3,7 @@ require './classes/music_album'
 require './classes/genre'
 require './classes/game'
 require './classes/author'
+require './classes/label'
 
 module Read
     def load
@@ -14,7 +15,9 @@ module Read
             @genres.push(genre)
             author=Author.new(album['author']['firstname'],album['author']['lastname'])
             @authors.push(author)
-          @music_albums.push(MusicAlbum.new(genre,author,  album['date'], album['spotify']))
+            label=Label.new(album['label']['title'],album['label']['color'])
+            @labels.push(label)
+          @music_albums.push(MusicAlbum.new(genre, author, label, album['date'], album['spotify']))
         end
       end
 
@@ -39,8 +42,16 @@ module Read
         if !file_j.empty?
         game = JSON.parse(file_j)
         game.each do |ga|
-          @games.push(Game.new(ga['date'],ga['multiplayer'],ga['last_played_at']))
+          genre=Genre.new(album['genre']['name'])
+          @genres.push(genre)
+          author=Author.new(album['author']['firstname'],album['author']['lastname'])
+          @authors.push(author)
+          label=Label.new(album['label']['title'],album['label']['color'])
+          @labels.push(author)
+          @games.push(Game.new(genre, author, label, ga['date'],ga['multiplayer'],ga['last_played_at']))
         end
+        Output.load_books(@books)
+        Output.load_labels(@labels)
         end
     end
 

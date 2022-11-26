@@ -5,11 +5,9 @@ require_relative 'genre'
 class MusicAlbum < Item
   attr_reader :on_spotify
 
-  def initialize(genre, author,date,spotify)
-    super(date)
+  def initialize(*args, spotify)
+    super(*args)
     @on_spotify = spotify
-    @genre=genre
-    @author=author
   end
 
   def self.list_music_album(albums)

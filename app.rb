@@ -60,8 +60,6 @@ class APP
   end
 
   def options(choice)
-    Output.load_books(@books)
-    Output.load_labels(@labels)
     case choice
     when 1..6
       list_item(choice)
