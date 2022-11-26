@@ -2,7 +2,7 @@ require_relative '../classes/book'
 
 describe Book do
   before :each do
-    @book = Book.new('Oxford', 'Good', '2022-02-03')
+    @book = Book.new('cool','Oxford','Good','ddd', '2022-02-03',true)
   end
   it 'Returns the given data to the constructor or not' do
     expect(@book.publisher).to eq 'Oxford'
