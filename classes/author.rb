@@ -1,16 +1,17 @@
 class Author
-  def initialize(first_name, last_name)
-    @id = rand(1 - 1000)
-    @firstname = first_name
-    @lastname = last_name
+  attr_accessor :firstname, :lastname
+  def initialize(firstname, lastname)
+    @id = rand(1..1000)
+    @firstname = firstname
+    @lastname = lastname
     @items = []
   end
 
-  def self.list_authors(auth)
-    if auth.length.zero?
+  def self.list_authors(author)
+    if author.length.zero?
       puts "\nNo authors found\n"
      else
-      auth.each do |a|
+      author.each do |a|
         puts "Name: #{a.firstname} #{a.lastname}\n"
       end
     end
@@ -18,6 +19,6 @@ class Author
 
   def add_item(item)
     @items << item
-    item.add_author = self
+    item.author = self
   end
 end

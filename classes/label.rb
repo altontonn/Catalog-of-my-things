@@ -10,8 +10,8 @@ class Label
   end
 
   def add_item(item)
-    items << item
-    @items.add_label(self)
+    @items << item
+    item.label=self
   end
 
   def self.list_all_labels(labels)

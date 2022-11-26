@@ -1,9 +1,10 @@
 require_relative './classes/author'
 require_relative './classes/label'
 require_relative './classes/book'
-require_relative './methods'
+require_relative './classes/methods'
 require_relative './preserve_data/preserve_data'
 require './classes/genre'
+require './classes/create_game'
 require './classes/create_module'
 require './classes/read_module'
 require './classes/music_album'
@@ -11,6 +12,8 @@ require 'json'
 
 class APP
   include CreateElement
+  include Book_Label
+  include GameElement
   include Read
 
   def initialize

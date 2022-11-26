@@ -7,17 +7,23 @@ require './classes/author'
 module Read
     def load
         file = File.read('./data_store/music_album.json')
-        music = JSON.parse(file)
-        music.each do |album|
-          @music_albums.push(MusicAlbum.new(album['genre'], album['author'],  album['date'], album['spotify']))
+        if !file.empty?
+          music = JSON.parse(file)
+          music.each do |album|
+            genre=Genre.new(album['genre']['name'])
+            author=Author.new(album['author']['firstname'],album['author']['lastname'])
+          @music_albums.push(MusicAlbum.new(genre,author,  album['date'], album['spotify']))
         end
+      end
 
         ############
         f = File.read('./data_store/author.json')
         author = JSON.parse(f)
+        if !author.empty?
         author.each do |l|
           @authors.push(Author.new(l['firstname'],l['lastname']))
         end
+      end
       
         #################
         file_json = File.read('./data_store/genre.json')
@@ -38,8 +44,11 @@ module Read
         music = []
         @music_albums.each do |album|
           music.push({
-                       genre:album.genre,
-                       author: album.author,
+                       genre:{name:album.genre.name},
+                       author: {
+                        firstname:album.author.firstname,
+                        lastname:album.author.lastname
+                       },
                        date:album.publish_date,
                        spotify: album.on_spotify
                      })
@@ -69,7 +78,7 @@ module Read
      game_json = []
       @games.each do |game|
         game_json.push( {
-          date: game.date,
+          date: game.publish_date,
           multiplayer:game.multiplayer,
           last_played_at:game.last_played_at
         })
