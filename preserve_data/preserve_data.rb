@@ -39,21 +39,25 @@ class Output
     return books unless File.exist?('./data_store/books.json')
 
     book_read = File.read('./data_store/books.json')
+    if !book_read.empty?
     book_json = JSON.parse(book_read)
     book_json.each do |book|
       book = Book.new(book['publisher'], book['cover_state'], book['publish_date'])
       books << book
     end
   end
+  end
 
   def self.load_labels(labels)
     return labels unless File.exist?('./data_store/labels.json')
 
     label_read = File.read('./data_store/labels.json')
+    if !label_read.empty?
     label_json = JSON.parse(label_read)
     label_json.each do |label|
       label = Label.new(label['title'], label['color'])
       labels << label
     end
+  end
   end
 end

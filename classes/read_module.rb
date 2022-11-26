@@ -11,32 +11,36 @@ module Read
           music = JSON.parse(file)
           music.each do |album|
             genre=Genre.new(album['genre']['name'])
+            @genres.push(genre)
             author=Author.new(album['author']['firstname'],album['author']['lastname'])
+            @authors.push(author)
           @music_albums.push(MusicAlbum.new(genre,author,  album['date'], album['spotify']))
         end
       end
 
-        ############
-        f = File.read('./data_store/author.json')
-        author = JSON.parse(f)
-        if !author.empty?
-        author.each do |l|
-          @authors.push(Author.new(l['firstname'],l['lastname']))
-        end
-      end
+      #   ############
+      #   f = File.read('./data_store/author.json')
+      #   author = JSON.parse(f)
+      #   if !author.empty?
+      #   author.each do |l|
+      #     @authors.push(Author.new(l['firstname'],l['lastname']))
+      #   end
+      # end
       
-        #################
-        file_json = File.read('./data_store/genre.json')
-        genre = JSON.parse(file_json)
-        genre.each do |g|
-          @genres.push(Genre.new(g['name']))
-        end
+      #   #################
+      #   file_json = File.read('./data_store/genre.json')
+      #   genre = JSON.parse(file_json)
+      #   genre.each do |g|
+      #     @genres.push(Genre.new(g['name']))
+      #   end
 
         ###############
         file_j = File.read('./data_store/game.json')
+        if !file_j.empty?
         game = JSON.parse(file_j)
         game.each do |ga|
           @games.push(Game.new(ga['date'],ga['multiplayer'],ga['last_played_at']))
+        end
         end
     end
 
@@ -55,24 +59,24 @@ module Read
         end
         File.write('./data_store/music_album.json',music.to_json)
          
-        ###################
-        author_json = []
-        @authors.each do |author|
-          author_json.push( {
-            firstname: author.firstname,
-            lastname: author.lastname
-          })
-        end
-        File.write('./data_store/author.json',author_json.to_json)
+        # ###################
+        # author_json = []
+        # @authors.each do |author|
+        #   author_json.push( {
+        #     firstname: author.firstname,
+        #     lastname: author.lastname
+        #   })
+        # end
+        # File.write('./data_store/author.json',author_json.to_json)
 
       ###############33
-      genre_json = []
-      @genres.each do |genre|
-        genre_json.push( {
-          name: genre.name
-        })
-      end
-      File.write('./data_store/genre.json',genre_json.to_json)
+      # genre_json = []
+      # @genres.each do |genre|
+      #   genre_json.push( {
+      #     name: genre.name
+      #   })
+      # end
+      # File.write('./data_store/genre.json',genre_json.to_json)
     
      #############
      game_json = []
