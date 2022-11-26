@@ -1,59 +1,30 @@
-require './modules/genre'
-require './modules/create_module'
-require './modules/music_album'
+require_relative './classes/author'
+require_relative './classes/label'
+require_relative './classes/book'
+require_relative './methods'
+require_relative './preserve_data/preserve_data'
+require './classes/genre'
+require './classes/create_module'
+require './classes/read_module'
+require './classes/music_album'
 require 'json'
 
 class APP
-  attr_accessor :books, :genres, :music_album
-
   include CreateElement
+  include Read
 
   def initialize
     @books = []
-    @music_album = []
+    @music_albums = []
     @games = []
     @genres = []
-    @author = []
-    @label = []
-  end
-
-  def option(choice)
-    case choice
-    when 2
-      if @music_album.length.zero?
-        puts "\nNo Music Album found\n\n"
-      else
-        MusicAlbum.list_music_album(@music_album)
-      end
-    when 4
-      if @genres.length.zero?
-        puts "\nNo Genre Found \n\n"
-      else
-        Genre.list_genre(@genres)
-      end
-    when 8
-      create_albums
-    when 11
-      save
-      puts "\n\nThank you for using the app please visit us soon!! \n \n"
-    else
-      puts "\nPlease pick a number from the list!\n"
-    end
-  end
-
-  def load
-    file = File.read('./json/music_album.json')
-    music = JSON.parse(file)
-    music.each do |album|
-      output = load_item(album['genre'], album['author'], album['label'], album['date'], album['source'])
-      @genres.push(output[0]) unless @genres.include?(output[0])
-      @author.push(output[1]) unless @author.include?(output[1])
-      @label.push(output[2]) unless @label.include?(output[2])
-      @music_album.push(MusicAlbum.new(*output, album['spotify']))
-    end
+    @labels = []
+    @authors = []
   end
 
   def menu
+    puts "Welcome to Catalog of My Life App!\n \n"
+
     puts 'Please choose an option by entering a number:'
     puts '1. List all books'
     puts '2. List all music albums'
@@ -61,25 +32,46 @@ class APP
     puts '4. List all genres'
     puts '5. List all labels'
     puts '6. List all authors'
-    puts '7. List all sources'
-    puts '8. Create a music album'
-    puts '9. Create a book'
-    puts '10. Create a game'
-    puts '11. Exit'
+    puts '7. Create a music album'
+    puts '8. Create a book'
+    puts '9. Create a game'
+    puts '10. Exit'
   end
 
-  def save
-    music = []
-    @music_album.each do |album|
-      music.push({
-                   genre => album.genre,
-                   author => album.author,
-                   label => album.label,
-                   date => album.date,
-                   source => album.source,
-                   spotify => album.spotify
-                 })
+  def list_item(choice)
+    case choice
+    when 1
+      Book.list_all_books(@books)
+    when 2
+      MusicAlbum.list_music_album(@music_albums)
+    when 3
+      Game.list_games(@games)
+    when 4
+      Genre.list_genre(@genres)
+    when 5
+      Label.list_all_labels(@labels)
+    when 6
+      Author.list_authors(@authors)
     end
-    File.write('./json/music_album.json',music.to_json)
+  end
+
+  def options(choice)
+    Output.load_books(@books)
+    Output.load_labels(@labels)
+    case choice
+    when 1..6
+      list_item(choice)
+    when 7
+      create_albums
+    when 8
+      add_book
+    when 9
+      add_game
+    when 10
+      save
+      Input.save_data(@books, @labels)
+    else
+      puts 'Please pick a number from the list!'
+    end
   end
 end

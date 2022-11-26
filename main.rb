@@ -1,14 +1,16 @@
 require './app'
 
 def main
-  puts "Welcome to Catalog of My Life App!\n \n"
   app = APP.new
   app.load
   loop do
     app.menu
     choice = gets.chomp.to_i
-    app.option(choice)
-    exit if choice == 11
+    app.options(choice)
+    if choice == 10
+      puts "Thank you for using the app please visit us soon!! \n \n \n"
+      break
+    end
   end
 end
 
