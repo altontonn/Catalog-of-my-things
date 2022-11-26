@@ -35,7 +35,7 @@ class Output
       author = Author.new(book['author']['firstname'], book['author']['lastname'])
       authors.push(author)
       label = Label.new(book['label']['title'], book['label']['color'])
-      labels.push(author)
+      labels.push(label)
       book = Book.new(genre, author, label, book['publisher'], book['cover_state'], book['publish_date'])
       books << book
     end
