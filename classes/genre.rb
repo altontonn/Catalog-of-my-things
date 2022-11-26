@@ -17,15 +17,13 @@ class Genre
 
   def self.list_genre(genres)
     if genres.length.zero?
-        puts "\nNo Genre Found \n\n"
+      puts "\nNo Genre Found \n\n"
     else
-    print "\n\n"
-    genres.each_with_index do |genre, index|
-      print "#{index}: #{genre.name} "
-    end
+      print "\n\n"
+      genres.each_with_index do |genre, index|
+        print "#{index}: #{genre.name} "
+      end
     end
     print "\n\n"
   end
-
 end
-

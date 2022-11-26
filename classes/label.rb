@@ -1,4 +1,3 @@
-
 class Label
   attr_accessor :title, :color, :items
   attr_reader :id
@@ -12,7 +11,7 @@ class Label
 
   def add_item(item)
     @items << item
-    item.label=self
+    item.label = self
   end
 
   def self.list_all_labels(labels)
@@ -25,4 +24,3 @@ class Label
     end
   end
 end
-

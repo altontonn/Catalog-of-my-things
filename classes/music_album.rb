@@ -12,13 +12,13 @@ class MusicAlbum < Item
 
   def self.list_music_album(albums)
     if albums.length.zero?
-        puts "\nNo Music Album found\n\n"
+      puts "\nNo Music Album found\n\n"
     else
-    albums.each do |album|
-      print "Genre: #{album.genre.name} Author: #{album.author.firstname} #{album.author.lastname} Label title: #{album.label.title} Label color: #{album.label.color}"
-      print "publish_Date: #{album.publish_date} Spotify: #{album.on_spotify}\n\n"
+      albums.each do |album|
+        print "Genre: #{album.genre.name} Author: #{album.author.firstname} #{album.author.lastname} Label title: #{album.label.title} Label color: #{album.label.color}"
+        print "publish_Date: #{album.publish_date} Spotify: #{album.on_spotify}\n\n"
+      end
     end
-   end
   end
 
   private

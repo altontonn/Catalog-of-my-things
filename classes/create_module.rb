@@ -11,18 +11,18 @@ module CreateElement
   end
 
   def create_albums
-    output=input(['name'])
-    genre=Genre.new(output[0])
-      @genres << genre
-    output=input(['firstnamre','lastname'])
-    author=Author.new(output[0],output[1])
+    output = input(['name'])
+    genre = Genre.new(output[0])
+    @genres << genre
+    output = input(%w[firstnamre lastname])
+    author = Author.new(output[0], output[1])
     @authors << author
-    output=input(['title','color'])
-    label=Label.new(output[0],output[1])
+    output = input(%w[title color])
+    label = Label.new(output[0], output[1])
     @labels << label
-    output = input(['date','spotify'])
-    album = MusicAlbum.new(genre, author, label, output[0],output[1])
-    @music_albums.push(album) 
+    output = input(%w[date spotify])
+    album = MusicAlbum.new(genre, author, label, output[0], output[1])
+    @music_albums.push(album)
     puts 'Record is created successfully!! '
   end
 end

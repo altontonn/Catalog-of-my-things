@@ -32,4 +32,3 @@ class Game < Item
     return false if date_diff <= 730.5
   end
 end
-

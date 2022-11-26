@@ -21,7 +21,6 @@ class APP
     @genres = []
     @labels = []
     @authors = []
-
   end
 
   def menu
