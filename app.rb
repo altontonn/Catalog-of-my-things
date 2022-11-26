@@ -12,8 +12,6 @@ require 'json'
 
 class APP
   include CreateElement
-  include Book_Label
-  include GameElement
   include Read
 
   def initialize
@@ -27,7 +25,7 @@ class APP
   end
 
   def menu
-    puts "Welcome to Catalog of My Life App!\n \n"
+    puts "\nWelcome to Catalog of My Life App!\n \n"
 
     puts 'Please choose an option by entering a number:'
     puts '1. List all books'
@@ -71,7 +69,7 @@ class APP
       add_game
     when 10
       save
-      Input.save_data(@books, @labels)
+      Input.save_data(@books)
     else
       puts 'Please pick a number from the list!'
     end

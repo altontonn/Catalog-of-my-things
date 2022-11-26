@@ -4,8 +4,8 @@ require_relative 'item'
 class Book < Item
   attr_accessor :cover_state, :publisher
 
-  def initialize(publisher, cover_state, publish_date)
-    super(publish_date)
+  def initialize(*args, publisher, cover_state)
+    super(*args)
     @publisher = publisher
     @cover_state = cover_state
   end
@@ -20,7 +20,8 @@ class Book < Item
     else
       books.each do |book|
         # rubocop:disable Layout/LineLength
-        puts "Publisher: \"#{book.publisher}\" Cover_state: \"#{book.cover_state}\" Publish_date: \"#{book.publish_date}\" "
+        print "\nAuthor: #{book.author.firstname} #{book.author.lastname} Label title: #{book.label.title} label color: #{book.label.title}"
+        print "Genre: #{book.genre.name} Publisher: #{book.publisher} Cover_state: #{book.cover_state} Publish_date: #{book.publish_date}"
         # rubocop:enable Layout/LineLength
       end
     end
