@@ -13,7 +13,7 @@ class APP
     @authors = []
   end
 
-  def list_item(choice)
+  def list_items(choice)
     case choice
     when 1
       Book.list_all_books(@books)
