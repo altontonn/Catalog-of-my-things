@@ -6,16 +6,28 @@ require './classes/author'
 require './classes/label'
 
 module Read
+  def load_genre_json(album)
+    Genre.new(album['genre']['name'])
+  end
+
+  def load_author_json(album)
+    Author.new(album['author']['firstname'], album['author']['lastname'])
+  end
+
+  def load_label_json(album)
+    Label.new(album['label']['title'], album['label']['color'])
+  end
+
   def load
     file = File.read('./data_store/music_album.json')
     unless file.empty?
       music = JSON.parse(file)
       music.each do |album|
-        genre = Genre.new(album['genre']['name'])
+        genre = load_genre_json(album)
         @genres.push(genre)
-        author = Author.new(album['author']['firstname'], album['author']['lastname'])
+        author = load_author_json(album)
         @authors.push(author)
-        label = Label.new(album['label']['title'], album['label']['color'])
+        label = load_label_json(album)
         @labels.push(label)
         @music_albums.push(MusicAlbum.new(genre, author, label, album['date'], album['spotify']))
       end
@@ -25,11 +37,11 @@ module Read
 
     game = JSON.parse(file_j)
     game.each do |ga|
-      genre = Genre.new(ga['genre']['name'])
+      genre = load_genre_json(ga)
       @genres.push(genre)
-      author = Author.new(ga['author']['firstname'], ga['author']['lastname'])
+      author = load_author_json(ga)
       @authors.push(author)
-      label = Label.new(ga['label']['title'], ga['label']['color'])
+      label = load_label_json(ga)
       @labels.push(label)
       @games.push(Game.new(genre, author, label, ga['date'], ga['multiplayer'], ga['last_played_at']))
     end
