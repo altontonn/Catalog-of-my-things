@@ -3,16 +3,22 @@ require_relative 'item'
 class MusicAlbum < Item
   attr_reader :on_spotify
 
-  def initialize(genre, author, label, date, source, spotify)
-    super(genre, author, label, date, source)
+  def initialize(genre, author,date,spotify)
+    super(date)
     @on_spotify = spotify
+    @genre=genre
+    @author=author
   end
 
   def self.list_music_album(albums)
+    if albums.length.zero?
+        puts "\nNo Music Album found\n\n"
+    else
     albums.each do |album|
-      print "Genre: #{album.genre} Author: #{album.author} Label: #{album.label}"
-      print "Date: #{album.date} Source: #{album.source} Spotify: #{album.on_spotify}\n\n"
+      print "Genre: #{album.genre} Author: #{album.author}"
+      print "Date: #{album.publish_date} Spotify: #{album.on_spotify}\n\n"
     end
+   end
   end
 
   private
