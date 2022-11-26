@@ -20,6 +20,9 @@ https://github.com/altontonn/Catalog-of-my-things.git
 `gem install --no-document rubocop`
 ```
 
+### Presentation
+[video link](https://drive.google.com/file/d/1ZRHc5NvadcGHRZa6YwhIG0Ycg7XP0RDS/view?usp=share_link)
+
 ## Authors
 
 👤 **Newton Alumasa**
