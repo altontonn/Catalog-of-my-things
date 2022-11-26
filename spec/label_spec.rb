@@ -1,4 +1,4 @@
-require_relative '../modules/label'
+require_relative '../classes/label'
 
 describe Label do
   before :each do

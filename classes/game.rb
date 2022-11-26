@@ -1,4 +1,4 @@
-require './modules/item'
+require_relative 'item'
 
 class Game < Item
   attr_accessor :multiplayer, :last_played_at
@@ -14,7 +14,9 @@ class Game < Item
       puts "\nThere are no added games you can add by pressing 10\n"
     else
       games.each do |game|
-        puts " multiplayer: #{game.multiplayer} Last time played: #{game.last_played_at}\n"
+        print "Genre: #{game.genre.name}, Author: #{game.author.firstname}, #{game.author.lastname} "
+        print "Label title: #{game.label.title} Label color: #{game.label.color} publish_Date: #{game.publish_date} "
+        print "multiplayer: #{game.multiplayer} Last time played: #{game.last_played_at}\n"
       end
     end
   end

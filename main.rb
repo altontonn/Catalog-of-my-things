@@ -2,6 +2,7 @@ require './app'
 
 def main
   app = APP.new
+  app.load
   loop do
     app.menu
     choice = gets.chomp.to_i
